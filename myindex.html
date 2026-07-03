@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>人嘛，多看看才能开阔眼</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    // Apply dark mode before page renders to prevent flash
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+
+  <!-- Navigation -->
+  <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <span class="text-xl font-bold text-blue-600 dark:text-blue-400">TangentVPN</span>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="#about" class="nav-link" data-i18n="nav.intro">简介</a>
+          <a href="#pricing" class="nav-link" data-i18n="nav.pricing">定价</a>
+          <a href="#contact" class="nav-link" data-i18n="nav.contact">联系</a>
+          <a href="#faq" class="nav-link" data-i18n="nav.faq">答疑</a>
+          <a href="purchase.html" class="nav-link" data-i18n="nav.purchase">购买</a>
+          <a href="download.html" class="nav-link" data-i18n="nav.download">下载</a>
+          <button onclick="showTutorial()" class="nav-link cursor-pointer" data-i18n="nav.tutorial">教程</button>
+
+          <!-- Divider -->
+          <div class="w-px h-6 bg-gray-200 dark:bg-gray-600 mx-2"></div>
+
+          <!-- Dark Mode Toggle -->
+          <button id="themeToggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" title="Toggle dark mode">
+            <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+            </svg>
+            <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+          </button>
+
+          <!-- Language Switch -->
+          <button id="langSwitch" onclick="switchLang()" class="px-3 py-1.5 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800 text-sm font-medium transition-colors">
+            English
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center space-x-2">
+          <button id="themeToggleMobile" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+            <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+            </svg>
+            <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+          </button>
+          <button id="langSwitchMobile" onclick="switchLang()" class="px-2 py-1.5 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm font-medium">
+            English
+          </button>
+          <button id="mobileMenuBtn" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu md:hidden bg-white dark:bg-gray-800 border-t dark:border-gray-700">
+      <div class="px-4 py-2 space-y-1">
+        <a href="#about" class="block py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" data-i18n="nav.intro">简介</a>
+        <a href="#pricing" class="block py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" data-i18n="nav.pricing">定价</a>
+        <a href="#contact" class="block py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" data-i18n="nav.contact">联系</a>
+        <a href="#faq" class="block py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" data-i18n="nav.faq">答疑</a>
+        <a href="purchase.html" class="block py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" data-i18n="nav.purchase">购买</a>
+        <a href="download.html" class="block py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" data-i18n="nav.download">下载</a>
+        <button onclick="showTutorial()" class="block w-full text-left py-2 px-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" data-i18n="nav.tutorial">教程</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent" data-i18n="index.hero.title">人嘛，多看看才能开阔眼</h1>
+        <p class="text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed" data-i18n="index.hero.desc">开启无界探索，与时代脉搏同频。我们的代理工具追求极致的便捷性、隐私性与安全性，您只需要下载我们的程序，然后进行购买后即可使用，非常简单，助您跨越地域限制，顺畅访问Google、YouTube、X、Netflix等网站。我们借助Cloudflare多边缘节点进行加速，使得在家用宽带下，网速亦能稳达80Mbps以上，让丝滑的4K视频流与高效办公成为您的日常。</p>
+        <a href="purchase.html" class="btn-press inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-10 rounded-xl transition duration-300 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40" data-i18n="index.hero.cta">立即购买</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 bg-white dark:bg-gray-800">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-8" data-i18n="index.about.title">服务简介</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400 text-center leading-relaxed max-w-3xl mx-auto" data-i18n="index.about.desc">开启无界探索，与时代脉搏同频。我们的代理工具追求极致的便捷性、隐私性与安全性，您只需要下载我们的程序，然后进行购买后即可使用，非常简单，助您跨越地域限制，顺畅访问Google、YouTube、X、Netflix等网站。我们借助Cloudflare多边缘节点进行加速，使得在家用宽带下，网速亦能稳达80Mbps以上，让丝滑的4K视频流与高效办公成为您的日常。</p>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12" data-i18n="index.pricing.title">定价方案</h2>
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <!-- Monthly Plan -->
+          <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 text-center">
+            <h3 class="text-xl font-semibold mb-2" data-i18n="index.pricing.monthly">月度计划</h3>
+            <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 my-4" data-i18n="index.pricing.monthly.price">20元/月</div>
+            <p class="text-gray-500 dark:text-gray-400 mb-8" data-i18n="index.pricing.monthly.desc">适合短期使用</p>
+            <a href="purchase.html" class="btn-press block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition duration-300" data-i18n="index.pricing.buy">立即购买</a>
+          </div>
+
+          <!-- Yearly Plan (Popular) -->
+          <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 text-center border-2 border-blue-500 relative pricing-popular">
+            <span class="badge-pulse absolute -top-3.5 left-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap" data-i18n="index.pricing.popular">最受欢迎</span>
+            <h3 class="text-xl font-semibold mb-2" data-i18n="index.pricing.yearly">年度计划</h3>
+            <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 my-4" data-i18n="index.pricing.yearly.price">180元/年</div>
+            <p class="text-gray-500 dark:text-gray-400 mb-8" data-i18n="index.pricing.yearly.desc">节省60元，最受欢迎</p>
+            <a href="purchase.html" class="btn-press block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition duration-300" data-i18n="index.pricing.buy">立即购买</a>
+          </div>
+
+          <!-- Permanent Plan -->
+          <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 text-center">
+            <h3 class="text-xl font-semibold mb-2" data-i18n="index.pricing.permanent">永久计划</h3>
+            <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 my-4" data-i18n="index.pricing.permanent.price">1600元/永久</div>
+            <p class="text-gray-500 dark:text-gray-400 mb-8" data-i18n="index.pricing.permanent.desc">一次付费，终身使用</p>
+            <button onclick="showPermanentModal()" class="btn-press w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition duration-300" data-i18n="index.pricing.buy">立即购买</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 bg-white dark:bg-gray-800">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12" data-i18n="index.contact.title">联系我们</h2>
+        <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+          <!-- Email Card -->
+          <div class="card-hover bg-gray-50 dark:bg-gray-700 rounded-2xl p-8 text-center">
+            <div class="text-5xl mb-4">📧</div>
+            <h3 class="text-xl font-semibold mb-3" data-i18n="index.contact.email">邮箱</h3>
+            <a href="mailto:tangent2533@gmail.com" class="text-blue-600 dark:text-blue-400 hover:underline break-all">tangent2533@gmail.com</a>
+          </div>
+          <!-- Telegram Card -->
+          <div class="card-hover bg-gray-50 dark:bg-gray-700 rounded-2xl p-8 text-center">
+            <div class="text-5xl mb-4">💬</div>
+            <h3 class="text-xl font-semibold mb-3" data-i18n="index.contact.telegram">Telegram</h3>
+            <a href="https://t.me/tangent_group" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">@tangent_group</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12" data-i18n="index.faq.title">常见问题</h2>
+        <div class="space-y-6 max-w-3xl mx-auto">
+          <!-- FAQ 1 -->
+          <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl shadow p-6">
+            <h3 class="text-lg font-semibold mb-3" data-i18n="index.faq.q1">我们与VPN的区别是什么？</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="index.faq.a1">VPN与我们的作用类似，但VPN配置更加复杂且相对容易被封禁，而我们的代理则灵活稳定，在全球拥有数百节点。</p>
+          </div>
+          <!-- FAQ 2 -->
+          <div class="card-hover bg-white dark:bg-gray-800 rounded-2xl shadow p-6">
+            <h3 class="text-lg font-semibold mb-3" data-i18n="index.faq.q2">使用遇到问题怎么办？</h3>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="index.faq.a2">我们的软件在开发时充分考虑了稳定性，所以大概率不会遇到问题，如果您真的遇到了，可以立即联系邮件：tangent2533@gmail.com或Telegram群组：https://t.me/tangent_group</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tutorial Section (hidden by default, shown via JS) -->
+    <section id="tutorial" class="py-20 px-4 bg-white dark:bg-gray-800 hidden">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-4" data-i18n="tutorial.title">使用教程</h2>
+        <p class="text-center text-gray-500 dark:text-gray-400 mb-12" data-i18n="tutorial.subtitle">以 Windows-AMD64 版本为例</p>
+
+        <div class="space-y-16">
+          <!-- Step 1 -->
+          <div class="flex flex-col md:flex-row items-center gap-8">
+            <div class="flex-1 order-2 md:order-1">
+              <img src="g1.jpg" alt="Step 1" class="rounded-xl shadow-lg w-full" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder rounded-xl w-full h-48 flex items-center justify-center text-gray-400\'>g1.jpg</div>'">
+            </div>
+            <div class="flex-1 order-1 md:order-2">
+              <div class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm font-bold px-3 py-1 rounded-full mb-3">1</div>
+              <h3 class="text-xl font-semibold mb-2" data-i18n="tutorial.step1.title">第一步：打开网站</h3>
+              <p class="text-gray-600 dark:text-gray-400" data-i18n="tutorial.step1.desc">打开网站，点击网站顶部"购买"按钮。如果尚未下载软件，可以点击下载按钮选择合适的版本</p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex flex-col md:flex-row items-center gap-8">
+            <div class="flex-1">
+              <div class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm font-bold px-3 py-1 rounded-full mb-3">2</div>
+              <h3 class="text-xl font-semibold mb-2" data-i18n="tutorial.step2.title">第二步：选择激活码</h3>
+              <p class="text-gray-600 dark:text-gray-400" data-i18n="tutorial.step2.desc">按照自己需求选择激活码，然后进行支付</p>
+            </div>
+            <div class="flex-1">
+              <img src="g2.jpg" alt="Step 2" class="rounded-xl shadow-lg w-full" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder rounded-xl w-full h-48 flex items-center justify-center text-gray-400\'>g2.jpg</div>'">
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex flex-col md:flex-row items-center gap-8">
+            <div class="flex-1 order-2 md:order-1">
+              <img src="g3.jpg" alt="Step 3" class="rounded-xl shadow-lg w-full" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder rounded-xl w-full h-48 flex items-center justify-center text-gray-400\'>g3.jpg</div>'">
+            </div>
+            <div class="flex-1 order-1 md:order-2">
+              <div class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm font-bold px-3 py-1 rounded-full mb-3">3</div>
+              <h3 class="text-xl font-semibold mb-2" data-i18n="tutorial.step3.title">第三步：粘贴激活码</h3>
+              <p class="text-gray-600 dark:text-gray-400" data-i18n="tutorial.step3.desc">将激活码粘贴进入自己的程序内</p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="flex flex-col md:flex-row items-center gap-8">
+            <div class="flex-1">
+              <div class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm font-bold px-3 py-1 rounded-full mb-3">4</div>
+              <h3 class="text-xl font-semibold mb-2" data-i18n="tutorial.step4.title">第四步：激活</h3>
+              <p class="text-gray-600 dark:text-gray-400" data-i18n="tutorial.step4.desc">点击Active Code按钮进行激活</p>
+            </div>
+            <div class="flex-1">
+              <img src="g4.jpg" alt="Step 4" class="rounded-xl shadow-lg w-full" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder rounded-xl w-full h-48 flex items-center justify-center text-gray-400\'>g4.jpg</div>'">
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="flex flex-col md:flex-row items-center gap-8">
+            <div class="flex-1 order-2 md:order-1">
+              <img src="g5.jpg" alt="Step 5" class="rounded-xl shadow-lg w-full" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder rounded-xl w-full h-48 flex items-center justify-center text-gray-400\'>g5.jpg</div>'">
+            </div>
+            <div class="flex-1 order-1 md:order-2">
+              <div class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm font-bold px-3 py-1 rounded-full mb-3">5</div>
+              <h3 class="text-xl font-semibold mb-2" data-i18n="tutorial.step5.title">第五步：开始使用</h3>
+              <p class="text-gray-600 dark:text-gray-400" data-i18n="tutorial.step5.desc">服务已经启动，现在已经可以访问google.com、youtube.com等网站</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Permanent Plan Modal -->
+  <div id="permanentModal" class="fixed inset-0 z-50 hidden">
+    <div class="modal-backdrop absolute inset-0" onclick="closePermanentModal()"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 z-10">
+      <h3 class="text-xl font-bold mb-4" data-i18n="purchase.permanent.modal.title">永久计划购买说明</h3>
+      <p class="text-gray-600 dark:text-gray-400 mb-6" data-i18n="purchase.permanent.modal.desc">1600元永久计划不支持线上支付，请通过以下方式联系我们：</p>
+      <div class="space-y-3 mb-6 bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
+        <p class="flex items-center gap-2">
+          <span>📧</span>
+          <a href="mailto:tangent2533@gmail.com" class="text-blue-600 dark:text-blue-400 hover:underline">tangent2533@gmail.com</a>
+        </p>
+        <p class="flex items-center gap-2">
+          <span>💬</span>
+          <a href="https://t.me/tangent_group" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">https://t.me/tangent_group</a>
+        </p>
+      </div>
+      <button onclick="closePermanentModal()" class="btn-press w-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 py-2.5 px-4 rounded-xl transition duration-300 font-medium" data-i18n="purchase.permanent.modal.close">关闭</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-gray-800 py-8 px-4 border-t dark:border-gray-700">
+    <div class="max-w-4xl mx-auto text-center text-gray-500 dark:text-gray-400">
+      <p>© 2026 TangentVPN. <span data-i18n="index.footer.rights">版权所有</span></p>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script>
+    // Dark mode toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeToggleMobile = document.getElementById('themeToggleMobile');
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }
+
+    themeToggle?.addEventListener('click', toggleTheme);
+    themeToggleMobile?.addEventListener('click', toggleTheme);
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        if (e.matches) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuBtn?.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Close mobile menu when clicking a link
+    mobileMenu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // Show tutorial section (JS switch, not page navigation)
+    function showTutorial() {
+      const tutorial = document.getElementById('tutorial');
+      tutorial.classList.remove('hidden');
+      tutorial.scrollIntoView({ behavior: 'smooth' });
+      // Close mobile menu if open
+      mobileMenu?.classList.remove('open');
+    }
+
+    // Permanent plan modal
+    function showPermanentModal() {
+      document.getElementById('permanentModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePermanentModal() {
+      document.getElementById('permanentModal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closePermanentModal();
+      }
+    });
+
+    // Apply translations on page load
+    applyTranslations();
+  </script>
+</body>
+</html>
