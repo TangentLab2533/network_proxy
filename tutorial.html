@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>教程 - TangentVPN</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+
+  <!-- Navigation -->
+  <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <a href="index.html" class="flex items-center">
+          <span class="text-xl font-bold text-blue-600 dark:text-blue-400">TangentVPN</span>
+        </a>
+        <div class="flex items-center space-x-3">
+          <button id="themeToggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+            <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+            </svg>
+            <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+          </button>
+          <button id="langSwitch" onclick="switchLang()" class="px-3 py-1.5 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800 text-sm font-medium transition-colors">
+            English
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-1 pt-24 pb-16 px-4">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <h1 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="tutorial.title">使用教程</h1>
+        <p class="text-gray-600 dark:text-gray-400" data-i18n="tutorial.subtitle">以 Windows-AMD64 版本举例（所有版本GUI一致）</p>
+        <div class="mt-4">
+          <a href="download.html" class="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline text-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+            </svg>
+            <span data-i18n="tutorial.download.link">前往下载页面</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div class="space-y-20">
+        <!-- Step 1 -->
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="flex-1 order-2 md:order-1">
+            <img src="g1.jpg" alt="Step 1 - Open Website" class="rounded-xl shadow-lg w-full" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder rounded-xl w-full h-64 flex items-center justify-center text-gray-400 dark:text-gray-500 text-lg\'>g1.jpg</div>'">
+          </div>
+          <div class="flex-1 order-1 md:order-2">
+            <div class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm font-bold px-3 py-1 rounded-full mb-4">1</div>
+            <h2 class="text-2xl font-bold mb-3" data-i18n="tutorial.step1.title">打开网站</h2>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="tutorial.step1.desc">打开网站，点击网站顶部"购买"按钮</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="flex-1">
+            <div class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm font-bold px-3 py-1 rounded-full mb-4">2</div>
+            <h2 class="text-2xl font-bold mb-3" data-i18n="tutorial.step2.title">选择激活码</h2>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="tutorial.step2.desc">按照自己需求选择激活码，然后进行支付</p>
+          </div>
+          <div class="flex-1">
+            <img src="g2.jpg" alt="Step 2 - Select Activation Code" class="rounded-xl shadow-lg w-full" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder rounded-xl w-full h-64 flex items-center justify-center text-gray-400 dark:text-gray-500 text-lg\'>g2.jpg</div>'">
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="flex-1 order-2 md:order-1">
+            <img src="g3.jpg" alt="Step 3 - Paste Activation Code" class="rounded-xl shadow-lg w-full" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder rounded-xl w-full h-64 flex items-center justify-center text-gray-400 dark:text-gray-500 text-lg\'>g3.jpg</div>'">
+          </div>
+          <div class="flex-1 order-1 md:order-2">
+            <div class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm font-bold px-3 py-1 rounded-full mb-4">3</div>
+            <h2 class="text-2xl font-bold mb-3" data-i18n="tutorial.step3.title">粘贴激活码</h2>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="tutorial.step3.desc">将激活码粘贴进入自己的程序内</p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="flex-1">
+            <div class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm font-bold px-3 py-1 rounded-full mb-4">4</div>
+            <h2 class="text-2xl font-bold mb-3" data-i18n="tutorial.step4.title">激活</h2>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="tutorial.step4.desc">点击Active Code按钮进行激活</p>
+          </div>
+          <div class="flex-1">
+            <img src="g4.jpg" alt="Step 4 - Activate" class="rounded-xl shadow-lg w-full" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder rounded-xl w-full h-64 flex items-center justify-center text-gray-400 dark:text-gray-500 text-lg\'>g4.jpg</div>'">
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="flex-1 order-2 md:order-1">
+            <img src="g5.jpg" alt="Step 5 - Start Using" class="rounded-xl shadow-lg w-full" onerror="this.parentElement.innerHTML='<div class=\'img-placeholder rounded-xl w-full h-64 flex items-center justify-center text-gray-400 dark:text-gray-500 text-lg\'>g5.jpg</div>'">
+          </div>
+          <div class="flex-1 order-1 md:order-2">
+            <div class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 text-sm font-bold px-3 py-1 rounded-full mb-4">5</div>
+            <h2 class="text-2xl font-bold mb-3" data-i18n="tutorial.step5.title">开始使用</h2>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed" data-i18n="tutorial.step5.desc">服务已经启动，现在已经可以访问google.com、youtube.com等网站</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back Button -->
+      <div class="text-center mt-16">
+        <a href="index.html" class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          <span data-i18n="tutorial.back">返回首页</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-gray-800 py-6 px-4 border-t dark:border-gray-700">
+    <div class="max-w-4xl mx-auto text-center text-gray-500 dark:text-gray-400 text-sm">
+      <p>© 2026 TangentVPN</p>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script>
+    document.getElementById('themeToggle')?.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Apply translations
+    applyTranslations();
+  </script>
+</body>
+</html>

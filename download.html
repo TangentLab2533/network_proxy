@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>下载 - TangentVPN</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function() {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    })();
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+
+  <!-- Navigation -->
+  <nav class="bg-white dark:bg-gray-800 shadow-lg fixed w-full top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <a href="index.html" class="flex items-center">
+          <span class="text-xl font-bold text-blue-600 dark:text-blue-400">TangentVPN</span>
+        </a>
+        <div class="flex items-center space-x-3">
+          <button id="themeToggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
+            <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+            </svg>
+            <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+          </button>
+          <button id="langSwitch" onclick="switchLang()" class="px-3 py-1.5 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800 text-sm font-medium transition-colors">
+            English
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-1 pt-24 pb-16 px-4">
+    <div class="max-w-5xl mx-auto">
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <h1 class="text-3xl md:text-4xl font-bold mb-4" data-i18n="download.title">下载客户端</h1>
+        <p class="text-gray-600 dark:text-gray-400" data-i18n="download.desc">选择适合您操作系统的版本进行下载</p>
+      </div>
+
+      <!-- Note -->
+      <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-xl p-4 mb-8 text-center">
+        <p class="text-blue-700 dark:text-blue-300 text-sm" data-i18n="download.note">注意：所有版本的GUI一致，请根据您的系统架构选择对应的版本</p>
+      </div>
+
+      <!-- Compressed Version -->
+      <div class="mb-12">
+        <div class="flex items-center gap-3 mb-6">
+          <h2 class="text-2xl font-bold" data-i18n="download.compressed">压缩包版本</h2>
+          <span class="text-sm text-gray-500 dark:text-gray-400" data-i18n="download.compressed.desc">体积更小，需要解压后使用</span>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- macOS AMD64 -->
+          <div class="card-hover bg-white dark:bg-gray-800 rounded-xl shadow p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">🍎</span>
+              <h3 class="font-semibold" data-i18n="download.darwin.amd64">macOS (AMD64)</h3>
+            </div>
+            <a href="https://github.com/YizeHe/mihomo/actions/runs/28594719689/artifacts/8040693795" target="_blank" rel="noopener noreferrer" class="btn-press flex items-center justify-center gap-2 w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 py-2.5 px-4 rounded-lg transition-colors text-sm font-medium">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              <span data-i18n="download.github">GitHub 下载</span>
+            </a>
+          </div>
+
+          <!-- macOS ARM64 -->
+          <div class="card-hover bg-white dark:bg-gray-800 rounded-xl shadow p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">🍎</span>
+              <h3 class="font-semibold" data-i18n="download.darwin.arm64">macOS (ARM64)</h3>
+            </div>
+            <a href="https://github.com/YizeHe/mihomo/actions/runs/28594719689/artifacts/8040709919" target="_blank" rel="noopener noreferrer" class="btn-press flex items-center justify-center gap-2 w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 py-2.5 px-4 rounded-lg transition-colors text-sm font-medium">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              <span data-i18n="download.github">GitHub 下载</span>
+            </a>
+          </div>
+
+          <!-- Linux AMD64 -->
+          <div class="card-hover bg-white dark:bg-gray-800 rounded-xl shadow p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">🐧</span>
+              <h3 class="font-semibold" data-i18n="download.linux.amd64">Linux (AMD64)</h3>
+            </div>
+            <a href="https://github.com/YizeHe/mihomo/actions/runs/28594719689/artifacts/8040778797" target="_blank" rel="noopener noreferrer" class="btn-press flex items-center justify-center gap-2 w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 py-2.5 px-4 rounded-lg transition-colors text-sm font-medium">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              <span data-i18n="download.github">GitHub 下载</span>
+            </a>
+          </div>
+
+          <!-- Windows AMD64 - GitHub -->
+          <div class="card-hover bg-white dark:bg-gray-800 rounded-xl shadow p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">🪟</span>
+              <h3 class="font-semibold" data-i18n="download.windows.amd64">Windows (AMD64)</h3>
+            </div>
+            <a href="https://github.com/TangentLab2533/TangentLab2533.github.io/releases/download/v1/TangentVPN-windows-amd64.zip" target="_blank" rel="noopener noreferrer" class="btn-press flex items-center justify-center gap-2 w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 py-2.5 px-4 rounded-lg transition-colors text-sm font-medium">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              <span data-i18n="download.github">GitHub 下载</span>
+            </a>
+          </div>
+
+          <!-- Windows AMD64 - Lanzou Cloud -->
+          <div class="card-hover bg-white dark:bg-gray-800 rounded-xl shadow p-5 border-2 border-green-500/50">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">🪟</span>
+              <h3 class="font-semibold" data-i18n="download.windows.amd64">Windows (AMD64)</h3>
+            </div>
+            <button onclick="showLanzouModal()" class="btn-press flex items-center justify-center gap-2 w-full bg-green-100 dark:bg-green-900/30 hover:bg-green-200 dark:hover:bg-green-900/50 text-green-700 dark:text-green-300 py-2.5 px-4 rounded-lg transition-colors text-sm font-medium">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+              <span data-i18n="download.lanzou">蓝奏云下载</span>
+            </button>
+            <p class="mt-2 text-xs text-orange-600 dark:text-orange-400">
+              <span data-i18n="download.password">密码：</span>fsjg
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Standard Version -->
+      <div class="mb-12">
+        <div class="flex items-center gap-3 mb-6">
+          <h2 class="text-2xl font-bold" data-i18n="download.normal">非压缩包版本</h2>
+          <span class="text-sm text-gray-500 dark:text-gray-400" data-i18n="download.normal.desc">下载后可直接运行</span>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- macOS AMD64 -->
+          <div class="card-hover bg-white dark:bg-gray-800 rounded-xl shadow p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">🍎</span>
+              <h3 class="font-semibold" data-i18n="download.darwin.amd64">macOS (AMD64)</h3>
+            </div>
+            <a href="https://github.com/TangentLab2533/TangentLab2533.github.io/releases/download/v1/TangentVPN-darwin-amd64" target="_blank" rel="noopener noreferrer" class="btn-press flex items-center justify-center gap-2 w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 py-2.5 px-4 rounded-lg transition-colors text-sm font-medium">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              <span data-i18n="download.github">GitHub 下载</span>
+            </a>
+          </div>
+
+          <!-- macOS ARM64 -->
+          <div class="card-hover bg-white dark:bg-gray-800 rounded-xl shadow p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">🍎</span>
+              <h3 class="font-semibold" data-i18n="download.darwin.arm64">macOS (ARM64)</h3>
+            </div>
+            <a href="https://github.com/TangentLab2533/TangentLab2533.github.io/releases/download/v1/TangentVPN-darwin-arm64" target="_blank" rel="noopener noreferrer" class="btn-press flex items-center justify-center gap-2 w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 py-2.5 px-4 rounded-lg transition-colors text-sm font-medium">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              <span data-i18n="download.github">GitHub 下载</span>
+            </a>
+          </div>
+
+          <!-- Linux AMD64 -->
+          <div class="card-hover bg-white dark:bg-gray-800 rounded-xl shadow p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">🐧</span>
+              <h3 class="font-semibold" data-i18n="download.linux.amd64">Linux (AMD64)</h3>
+            </div>
+            <a href="https://github.com/TangentLab2533/TangentLab2533.github.io/releases/download/v1/TangentVPN-linux-amd64" target="_blank" rel="noopener noreferrer" class="btn-press flex items-center justify-center gap-2 w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 py-2.5 px-4 rounded-lg transition-colors text-sm font-medium">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              <span data-i18n="download.github">GitHub 下载</span>
+            </a>
+          </div>
+
+          <!-- Windows AMD64 -->
+          <div class="card-hover bg-white dark:bg-gray-800 rounded-xl shadow p-5">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-2xl">🪟</span>
+              <h3 class="font-semibold" data-i18n="download.windows.amd64">Windows (AMD64)</h3>
+            </div>
+            <a href="https://github.com/TangentLab2533/TangentLab2533.github.io/releases/download/v1/TangentVPN.exe" target="_blank" rel="noopener noreferrer" class="btn-press flex items-center justify-center gap-2 w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 py-2.5 px-4 rounded-lg transition-colors text-sm font-medium">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              <span data-i18n="download.github">GitHub 下载</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back Button -->
+      <div class="text-center mt-12">
+        <a href="myindex.html" class="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          <span data-i18n="download.back">返回首页</span>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Lanzou Cloud Modal -->
+  <div id="lanzouModal" class="fixed inset-0 z-50 hidden">
+    <div class="modal-backdrop absolute inset-0" onclick="closeLanzouModal()"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 z-10">
+      <h3 class="text-xl font-bold mb-4" data-i18n="download.lanzou.modal.title">蓝奏云下载</h3>
+      <p class="text-gray-600 dark:text-gray-400 mb-6" data-i18n="download.lanzou.modal.desc">请点击下方链接前往蓝奏云下载：</p>
+      <div class="mb-6 bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
+        <a href="https://wwaow.lanzoub.com/i0e1s3u5xqdg" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline break-all">
+          https://wwaow.lanzoub.com/i0e1s3u5xqdg
+        </a>
+        <p class="mt-3 text-sm text-orange-600 dark:text-orange-400">
+          <span data-i18n="download.password">密码：</span>fsjg
+        </p>
+      </div>
+      <button onclick="closeLanzouModal()" class="btn-press w-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 py-2.5 px-4 rounded-xl transition duration-300 font-medium" data-i18n="download.lanzou.modal.close">关闭</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-white dark:bg-gray-800 py-6 px-4 border-t dark:border-gray-700 mt-auto">
+    <div class="max-w-4xl mx-auto text-center text-gray-500 dark:text-gray-400 text-sm">
+      <p>© 2026 TangentVPN</p>
+    </div>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script>
+    // Dark mode toggle
+    const themeToggle = document.getElementById('themeToggle');
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }
+    themeToggle?.addEventListener('click', toggleTheme);
+
+    // Lanzou Cloud modal
+    function showLanzouModal() {
+      document.getElementById('lanzouModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLanzouModal() {
+      document.getElementById('lanzouModal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLanzouModal();
+    });
+
+    // Apply translations
+    applyTranslations();
+  </script>
+</body>
+</html>

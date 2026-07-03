@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用教程 - 代理工具</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #2d3436;
+            --text-sub: #636e72;
+            --radius: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* 顶部导航 */
+        header {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        nav {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a:hover { color: var(--primary-color); }
+        
+        /* 导航激活状态装饰 */
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0;
+            width: 100%; height: 2px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-weight: 300;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+        }
+
+        /* 步骤卡片设计 */
+        .step-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 0.9rem;
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .step-content {
+            color: var(--text-sub);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .step-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+            word-break: break-all;
+            border-bottom: 1px solid transparent;
+        }
+
+        .step-content a:hover {
+            border-bottom: 1px solid var(--primary-color);
+        }
+
+        /* 图片展示区 */
+        .step-image {
+            width: 100%;
+            border-radius: 12px;
+            display: block;
+            border: 1px solid #eee;
+            background: #f9f9f9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #ccc;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 600px) {
+            .container { margin-top: 100px; }
+            h1 { font-size: 1.5rem; }
+            .step-card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html">主页</a>
+            <a href="#steps" class="active">步骤</a>
+        </nav>
+    </header>
+
+    <div class="container" id="steps">
+        <h1>配置指南</h1>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">1</div>
+                <div class="step-title">下载客户端</div>
+            </div>
+            <div class="step-content">
+                访问 <a href="https://clashmi.app/download" target="_blank">clashmi.app/download</a> 下载您所需要的版本。
+                <ul style="margin-top:10px; list-style:none; padding-left:5px;">
+                    <li>💻 Windows 电脑选择 <strong>Windows</strong> 版本</li>
+                    <li>📱 安卓手机选择 <strong>Android</strong> 版本</li>
+                    <li>🍎 苹果手机不可直接下载，必须先前往应用商店注册美区 ID 后下载。
+                        <br>美区注册教程：<a href="http://dlj.bz/uUi0MN" target="_blank">http://dlj.bz/uUi0MN</a>
+                    </li>
+                </ul>
+            </div>
+            <img src="1.png" alt="下载页面示例" class="step-image">
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">2</div>
+                <div class="step-title">进入配置页面</div>
+            </div>
+            <div class="step-content">
+                购买订阅链接后，打开客户端，在菜单栏或设置中点击<strong>“我的配置”</strong>。
+            </div>
+            <img src="2.png" alt="我的配置示例" class="step-image">
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">3</div>
+                <div class="step-title">添加新配置</div>
+            </div>
+            <div class="step-content">
+                在配置管理界面，点击右上角的<strong>“ + ”</strong>号按钮。
+            </div>
+            <img src="3.png" alt="点击添加示例" class="step-image">
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">4</div>
+                <div class="step-title">选择连接方式</div>
+            </div>
+            <div class="step-content">
+                在弹出的选项中，点击<strong>“添加配置链接”</strong>。
+            </div>
+            <img src="4.png" alt="添加链接示例" class="step-image">
+        </div>
+
+        <div class="step-card">
+            <div class="step-header">
+                <div class="step-number">5</div>
+                <div class="step-title">完成订阅导入</div>
+            </div>
+            <div class="step-content">
+                将您复制好的订阅链接<strong>粘贴</strong>进输入框，点击确定即可完成配置。
+            </div>
+            <img src="5.png" alt="粘贴链接示例" class="step-image">
+        </div>
+
+        <footer>
+            &copy; 2026 TangentLab. All rights reserved.
+        </footer>
+    </div>
+
+</body>
+</html>
